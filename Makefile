@@ -3,21 +3,21 @@ CFLAGS = -Wall -Wno-implicit-function-declaration -Iinclude
 BUILD = build
 SRC = src
 
-all: $(BUILD) $(BUILD)/main.out
+test: $(BUILD) $(BUILD)/test.out
 
 $(BUILD):
 	mkdir -p $(BUILD)
 
-$(BUILD)/main.out: $(BUILD)/matrix.o $(BUILD)/linear.o 
-	$(CC) $(CFLAGS) $(BUILD)/matrix.o $(BUILD)/linear.o -o $(BUILD)/main.out
+$(BUILD)/test.out: $(BUILD)/matrix.o $(BUILD)/test.o
+	$(CC) $(CFLAGS) $(BUILD)/matrix.o $(BUILD)/test.o -o $(BUILD)/test.out
 
 
 $(BUILD)/matrix.o: $(SRC)/matrix.c
 	$(CC) $(CFLAGS) -c $(SRC)/matrix.c -o $(BUILD)/matrix.o
 
 
-$(BUILD)/linear.o: $(SRC)/linear.c
-	$(CC) $(CFLAGS) -c $(SRC)/linear.c -o $(BUILD)/linear.o
+$(BUILD)/test.o: $(SRC)/test.c
+	$(CC) $(CFLAGS) -c $(SRC)/test.c -o $(BUILD)/test.o
 
 
 
