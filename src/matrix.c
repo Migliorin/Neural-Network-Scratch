@@ -63,13 +63,56 @@ struct Matrix* createMat(int rows, int cols){
 	*row = rows;
 	*col = cols;
 
-	for(int i = 0; i < rows*cols; i++){
-		mat_data[i] = randomNumberMinus1to1();
-	}
-
 	mat->rows = row;
 	mat->cols = col;
 	mat->mat = mat_data;
 
 	return mat;
 }
+
+void fillMatrixRandomNumber(struct Matrix* mat){
+	int row;
+	int col;
+
+	row = *(mat->rows);
+	col = *(mat->cols);
+
+	for(int i = 0; i < row*col; i++){
+		mat->mat[i] = randomNumberMinus1to1();
+	}
+}
+
+void mulMatScalar(struct Matrix* mat, float number){
+	int row;
+	int col;
+
+	row = *(mat->rows);
+	col = *(mat->cols);
+
+	for(int i = 0; i < row*col; i++){
+		mat->mat[i] = number * ((mat->mat[i]));
+	}
+
+}
+
+
+struct Matrix* transpose(struct Matrix* mat){
+	int row;
+	int col;
+
+	row = *(mat->rows);
+	col = *(mat->cols);
+
+	struct Matrix *transpose_mat = createMat(col,row);
+
+	if(transpose_mat != NULL){
+		for (int i = 0; i < row; i++) {
+    		    for (int j = 0; j < col; j++) {
+    		        transpose_mat->mat[j * row + i] = mat->mat[i * col + j];
+    		    }
+    		}
+	}
+
+	return transpose_mat;
+}
+
