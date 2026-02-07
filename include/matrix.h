@@ -21,5 +21,7 @@ struct Matrix* transpose(struct Matrix* mat);
 
 void fillMatrixRandomNumber(struct Matrix* mat);
 
+struct Matrix* mulMat(struct Matrix* mat1, struct Matrix* mat2);
+
 #endif
 

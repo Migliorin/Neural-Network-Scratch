@@ -116,3 +116,36 @@ struct Matrix* transpose(struct Matrix* mat){
 	return transpose_mat;
 }
 
+
+struct Matrix* mulMat(struct Matrix* mat1, struct Matrix* mat2){
+
+	if(*(mat1->cols) != *(mat2->rows)){
+		return NULL;
+	}
+
+	int row;
+	int col;
+	int common;
+
+	row = *(mat1->rows);
+	col = *(mat2->cols);
+	common = *(mat1->cols);
+
+	struct Matrix *matrix_multiplicated = createMat(row,col);
+
+    	for (int i = 0; i < row; i++) {
+    	    for (int j = 0; j < col; j++) {
+    	        float sum = 0;
+    	        for (int k = 0; k < common; k++) {
+    	            sum += (mat1->mat[i * (*(mat1->cols)) + k]) * ( mat2->mat[k * (*(mat2->cols)) + j]);
+    	        }
+    	        matrix_multiplicated->mat[i * col + j] = sum;
+    	    }
+    	}
+
+
+	return matrix_multiplicated;
+
+}
+
+
